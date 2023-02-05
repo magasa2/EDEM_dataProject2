@@ -68,7 +68,7 @@ def run():
     parser.add_argument(
                     '--bigquery_schema_path',
                     required=False,
-                    default='./schemas/bq_schema.json',
+                    default='./schema/bq_schema.json',
                     help='BigQuery Schema Path within the repository.')              
     
     args, pipeline_opts = parser.parse_known_args()
