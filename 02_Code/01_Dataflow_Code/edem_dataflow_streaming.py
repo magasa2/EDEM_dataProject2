@@ -146,10 +146,6 @@ def run():
                     required=True,
                     help='GCP cloud project name')
     parser.add_argument(
-                    '--hostname',
-                    required=True,
-                    help='API Hostname provided during the session.')
-    parser.add_argument(
                     '--input_subscription',
                     required=True,
                     help='PubSub Subscription which will be the source of data.')
