@@ -5,7 +5,7 @@ RUN mkdir -p ${WORKDIR}
 WORKDIR ${WORKDIR}
 
 COPY requirements.txt .
-COPY ../edem_dataflow_streaming.py .
+COPY edem_dataflow_streaming.py .
 COPY ../schema/*.json schema/
 
 # Do not include `apache-beam` in requirements.txt
