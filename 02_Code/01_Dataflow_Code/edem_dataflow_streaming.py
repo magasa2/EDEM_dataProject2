@@ -33,7 +33,7 @@ def ParsePubSubMessage(message):
     #Return function
     return row
 
-#PTransform Classes
+'''#PTransform Classes
 class getBestProduct(beam.PTransform):
     def expand(self, pcoll):
         best_product = (pcoll
@@ -133,7 +133,7 @@ class OutputFormatDoFn(beam.DoFn):
         output_msg = {"ProcessingTime": str(datetime.now()), "message": f"{product_id} was the best-selling product."}
         #Convert the json to the proper pubsub format
         output_json = json.dumps(output_msg)
-        yield output_json.encode('utf-8')
+        yield output_json.encode('utf-8')'''
 
 """ Dataflow Process """
 def run():
@@ -185,7 +185,7 @@ def run():
     #Pipeline
     with beam.Pipeline(argv=pipeline_opts,options=options) as p:
 
-        """ Part 01: Format data by masking the sensitive fields and checking if the transaction is fraudulent."""
+        """ Part 01: Format data by masking the sensitive fields and checking if the transaction is fraudulent.
         data = (
             p 
                 | "Read From PubSub" >> beam.io.ReadFromPubSub(subscription=f"projects/{args.project_id}/subscriptions/{args.input_subscription}", with_attributes=True)
@@ -193,15 +193,13 @@ def run():
                 | "Parse JSON messages" >> beam.Map(ParsePubSubMessage) 
                 # Adding Processing timestamp
                 | "Add Processing Time" >> beam.ParDo(AddTimestampDoFn())
-                # Masking Sensitive Data
-                | "Masking Sensitive Data" >> beam.ParDo(DLPMaskingDataDoFn(args.hostname))
-                # Check if the transacion is fraudulent
-                | "Call ML model" >> beam.ParDo(CallMLModelDoFn(args.hostname))
-        )
+        )"""
 
         """ Part 02: Writing data to BigQuery"""
-        (
-            data | "Write to BigQuery" >> beam.io.WriteToBigQuery(
+        
+        data = (
+            p
+                | "Write to BigQuery" >> beam.io.WriteToBigQuery(
                 table = f"{args.project_id}:{args.output_bigquery}",
                 schema = schema,
                 create_disposition = beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
@@ -209,7 +207,7 @@ def run():
             )
         )
 
-        """ Part 03: Get Best-Selling product per Window and write to PubSub """
+        """ Part 03: Get Best-Selling product per Window and write to PubSub 
         (
             data 
                 # Dealing with fraudulent transactions
@@ -222,7 +220,7 @@ def run():
                 | "OutputFormat" >> beam.ParDo(OutputFormatDoFn())
                 # Write notification to PubSub Topic
                 | "Send Push Notification" >> beam.io.WriteToPubSub(topic=f"projects/{args.project_id}/topics/{args.output_topic}", with_attributes=False)
-        )
+        )"""
 
 if __name__ == '__main__':
     #Add Logs
