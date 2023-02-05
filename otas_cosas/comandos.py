@@ -17,24 +17,26 @@ gcloud dataflow flex-template run "edem-dataflow-job-docker" \
     --parameters project_id="edemproject2" \
     --parameters input_subscription="iotToBigQuery-sub" \
     --parameters output_topic="iotToBigQuery" \
-    --parameters output_bigquery="edemDataset.edemTable2" \
+    --parameters output_bigquery="edemDataset.table1" \
     --region europe-west1
 
  #Para iniciar DataFlow
 python edem_dataflow_streaming.py \
-    --project_id edemproject2 \
-    --input_subscription iotToBigQuery-sub \
-    --output_topic iotToBigQuery \
-    --output_bigquery edemDataset.table1 \
-    --runner DataflowRunner \
-    --job_name  dataflow-job \
-    --region europe-west1 \
-    --temp_location gs://edemproject2/tmp \
-    --staging_location gs://edemproject2/stg
+    --project_id "edemproject2" \
+    --input_subscription "iotToBigQuery-sub" \
+    --output_topic "iotToBigQuery" \
+    --output_bigquery "edemDataset.table1" \
+    --runner "DataflowRunner" \
+    --job_name  "dataflow-job" \
+    --region "europe-west1" \
+    --temp_location "gs://edemproject2/tmp" \
+    --staging_location "gs://edemproject2/stg"
 
 #Para inciciar generador de datos
 cd /02_Code/00_Generator
 python generator.py \
     --project_id edemproject2 \
     --topic_name iotToBigQuery
+
+
 
