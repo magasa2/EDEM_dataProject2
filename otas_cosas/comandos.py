@@ -15,6 +15,7 @@ gcloud dataflow flex-template build "gs://edemproject2/dataflowtemplate.json" \
 python edem_dataflow_streaming.py \
     --project_id edemproject2 \
     --input_subscription iotToBigQuery-sub \
+    --output_topic iotToBigQuery \
     --output_bigquery edemDataset.table1 \
     --runner DataflowRunner \
     --job_name  dataflow-job \
@@ -23,7 +24,7 @@ python edem_dataflow_streaming.py \
     --staging_location gs://edemproject2/stg
 
 #Para inciciar generador de datos
-cd /02_Dataflow/00_Generator
+cd /02_Code/00_Generator
 python generator.py \
     --project_id edemproject2 \
     --topic_name iotToBigQuery
