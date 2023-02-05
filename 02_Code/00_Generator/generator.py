@@ -17,7 +17,7 @@ from datetime import datetime
 from google.cloud import pubsub_v1
 from api import *
 #Llamamos a la función de api.py para empezar a generar nuestros datos
-iterate_rows()
+
 
 #Input arguments
 parser = argparse.ArgumentParser(description=('Aixigo Contracts Dataflow pipeline.'))
@@ -75,3 +75,6 @@ def run_generator(project_id, topic_name):
 if __name__ == "__main__":
     logging.getLogger().setLevel(logging.INFO)
     run_generator(args.project_id, args.topic_name)
+
+
+iterate_rows()
