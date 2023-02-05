@@ -150,10 +150,6 @@ def run():
                     required=True,
                     help='PubSub Subscription which will be the source of data.')
     parser.add_argument(
-                    '--output_topic',
-                    required=True,
-                    help='PubSub Topic which will be the sink for notification data.')
-    parser.add_argument(
                     '--output_bigquery',
                     required=True,
                     help='Table where data will be stored in BigQuery. Format: <dataset>.<table>.')
