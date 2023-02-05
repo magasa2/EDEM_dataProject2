@@ -12,11 +12,10 @@ import random
 import logging
 import argparse
 import google.auth
+import pandas as pd
 from faker import Faker
 from datetime import datetime
 from google.cloud import pubsub_v1
-from api import *
-#Llamamos a la función de api.py para empezar a generar nuestros datos
 
 
 #Input arguments
@@ -53,10 +52,24 @@ class PubSubMessages:
 
 #Generator Code
 def generateMockData():
-    f = open('sensor_data.json')
-    payload_device = json.load(f)
-    #Return values
-    return payload_device
+  # Crear dataframe
+    df = pd.read_csv("dataset.csv")
+    # Simular una API indefinida
+    while True:
+        # Iterar por cada fila del dataframe
+        for index, row in df.iterrows():
+            # guardar datos necesarios en una variable del formato json
+            sensor_data = {"id": str(uuid.uuid1()), 
+                            "time": row["FECHA"],
+                            "motor_power": row["Par agitador"],
+                            "pressure": row["P abs SW mb"], 
+                            "temperature": row["Tª SW"]}
+            # guardar la variable en un archivo .json, que se sobreescribe cada segundo 
+            with open("sensor_data.json", "w") as jsonFile:
+                json.dump(sensor_data, jsonFile)
+            time.sleep(1)
+            print(sensor_data)
+        return sensor_data
 
 def run_generator(project_id, topic_name):
     pubsub_class = PubSubMessages(project_id, topic_name)
@@ -77,4 +90,3 @@ if __name__ == "__main__":
     run_generator(args.project_id, args.topic_name)
 
 
-iterate_rows()
