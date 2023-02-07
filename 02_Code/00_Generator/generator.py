@@ -68,7 +68,7 @@ def generateMockData():
             json.dump(sensor_data, jsonFile)
         time.sleep(1)
         print(sensor_data)
-    yield sensor_data
+    return sensor_data
 
 def run_generator(project_id, topic_name):
     pubsub_class = PubSubMessages(project_id, topic_name)
@@ -76,8 +76,7 @@ def run_generator(project_id, topic_name):
     try:
         while True:
             message: dict = generateMockData()
-            json_str = json.dumps(message)
-            pubsub_class.publishMessages(json_str)
+            pubsub_class.publishMessages(message)
             #it will be generated a transaction each 5 seconds
             time.sleep(5)
     except Exception as err:
