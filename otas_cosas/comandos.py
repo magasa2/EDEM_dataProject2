@@ -11,13 +11,13 @@ gcloud dataflow flex-template build "gs://edemproject2/dataflowtemplate.json" \
     --metadata-file "schemas/metadata.json"
 
 #Run Dataflow Flex Template (sin levantar la imagen docker):
-gcloud dataflow flex-template run "edem-dataflow-job-docker" \
+gcloud dataflow flex-template run edem-dataflow-job-docker \
     --template-file-gcs-location "gs://edemproject2/dataflowtemplate.json" \
-    --parameters project_id="edemproject2" \
-    --parameters input_subscription="iotToBigQuery-sub" \
-    --parameters output_topic="iotToBigQuery" \
-    --parameters output_bigquery="edemDataset.table5" \
-    --region europe-west1
+    --parameters project_id= "edemproject2" \
+    --parameters input_subscription= "iotToBigQuery-sub" \
+    --parameters output_topic= "iotToCloudFunctions" \
+    --parameters output_bigquery= "edemDataset.table5" \
+    --region "europe-west1"
 
  #Para iniciar DataFlow
 python dataflow.py \
