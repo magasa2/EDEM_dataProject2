@@ -68,7 +68,7 @@ def generateMockData():
             json.dump(sensor_data, jsonFile)
         time.sleep(1)
         print(sensor_data)
-    return sensor_data
+    yield sensor_data
 
 def run_generator(project_id, topic_name):
     pubsub_class = PubSubMessages(project_id, topic_name)
