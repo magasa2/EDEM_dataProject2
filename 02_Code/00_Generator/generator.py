@@ -76,7 +76,8 @@ def run_generator(project_id, topic_name):
     try:
         while True:
             message: dict = generateMockData()
-            pubsub_class.publishMessages(message)
+            json_str = json.dumps(message)
+            pubsub_class.publishMessages(json_str)
             #it will be generated a transaction each 5 seconds
             time.sleep(5)
     except Exception as err:
