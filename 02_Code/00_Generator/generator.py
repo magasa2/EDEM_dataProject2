@@ -1,24 +1,14 @@
-# Serverless_Data_Processing_GCP
-# EDEM_Master_Data_Analytics
-
-""" Data Stream Generator:
-The generator will publish a new record simulating a new transaction in our site.""" 
+###EDEM MDA Data Project 2 Group 3
+#Inserting data into a PubSub Topic
 
 #Import libraries
 import json
 import time
-import uuid
-import random
 import logging
 import argparse
-import google.auth
-import pandas as pd
-from faker import Faker
-from datetime import datetime
 from google.cloud import pubsub_v1
 
-
-#Input arguments
+#Define input arguments
 parser = argparse.ArgumentParser(description=('Aixigo Contracts Dataflow pipeline.'))
 parser.add_argument(
                 '--project_id',
@@ -32,19 +22,20 @@ parser.add_argument(
 args, opts = parser.parse_known_args()
 
 class PubSubMessages:
-    """ Publish Messages in our PubSub Topic """
-
+    #Initialise PubSub Client
     def __init__(self, project_id, topic_name):
         self.publisher = pubsub_v1.PublisherClient()
         self.project_id = project_id
         self.topic_name = topic_name
 
+    #Publish message into PubSub Topic
     def publishMessages(self, message):
         json_str = json.dumps(message)
         topic_path = self.publisher.topic_path(self.project_id, self.topic_name)
         publish_future = self.publisher.publish(topic_path, json_str.encode("utf-8"))
-        logging.info("A New transaction has been registered. Id: %s", message['Transaction_Id'])
+        logging.info("A new datapoint with its ID %s has been registered at %s.", message["id"], message["time"])
 
+    #Close PubSub Client
     def __exit__(self):
         self.publisher.transport.close()
         logging.info("PubSub Client closed.")
