@@ -57,18 +57,17 @@ def generateMockData():
     # Simular una API indefinida
     # Iterar por cada fila del dataframe
     for index, row in df.iterrows():
-        # guardar datos necesarios en una variable del formato json
+        #Save required data as variable (dict)
         sensor_data = {"id": str(uuid.uuid1()), 
                         "time": row["FECHA"],
                         "motor_power": row["Par agitador"],
                         "pressure": row["P abs SW mb"], 
                         "temperature": row["Tª SW"]}
-        # guardar la variable en un archivo .json, que se sobreescribe cada segundo 
+        #Save variable as json-file that will be generated and re-written every second 
         with open("sensor_data.json", "w") as jsonFile:
             json.dump(sensor_data, jsonFile)
+        print(sensor_data)  
         time.sleep(1)
-        print(sensor_data)
-    return sensor_data
 
 def run_generator(project_id, topic_name):
     pubsub_class = PubSubMessages(project_id, topic_name)
