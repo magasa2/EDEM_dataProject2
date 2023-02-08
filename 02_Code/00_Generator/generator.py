@@ -75,7 +75,7 @@ def run_generator(project_id, topic_name):
     #Publish message into the queue every 5 seconds
     try:
         while True:
-            message: dict = generateMockData()
+            message = generateMockData()
             pubsub_class.publishMessages(message)
             #it will be generated a transaction each 5 seconds
             time.sleep(5)
