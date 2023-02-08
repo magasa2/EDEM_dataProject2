@@ -48,7 +48,8 @@ class PubSubMessages:
     def __exit__(self):
         self.publisher.transport.close()
         logging.info("PubSub Client closed.")
-            
+#Load generated data
+  
 
 #Generator Code
 def generateMockData():
@@ -69,12 +70,17 @@ def generateMockData():
         print(sensor_data)  
         time.sleep(1)
 
+def loadGeneratedData():
+    f = open('sensor_data.json')
+    datapoint = json.load(f)
+    return datapoint
+
 def run_generator(project_id, topic_name):
     pubsub_class = PubSubMessages(project_id, topic_name)
     #Publish message into the queue every 5 seconds
     try:
         while True:
-            message = generateMockData()
+            message = loadGeneratedData()
             pubsub_class.publishMessages(message)
             #it will be generated a transaction each 5 seconds
             time.sleep(5)
