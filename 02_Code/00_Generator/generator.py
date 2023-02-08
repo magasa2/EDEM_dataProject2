@@ -39,7 +39,7 @@ class PubSubMessages:
     def __exit__(self):
         self.publisher.transport.close()
         logging.info("PubSub Client closed.")
-#Load generated data
+
   
 
 #Generator Code
@@ -60,7 +60,8 @@ def generateMockData():
             json.dump(sensor_data, jsonFile)
         print(sensor_data)  
         time.sleep(1)
-
+        
+#Load generated data
 def loadGeneratedData():
     f = open('sensor_data.json')
     datapoint = json.load(f)
