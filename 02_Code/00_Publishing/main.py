@@ -47,7 +47,7 @@ def createcontainer():
     #Llama a la función anterior que crea el ID unico.
     userid=genuserid()
     #Comando para levantar el docker:
-    cmd=f"docker run -e TIME_ID={elapsedtime} -e USER_ID={userid} -d {containername}:latest -p {project} -tp {topic}"
+    cmd=f"docker run -e TIME_ID={elapsedtime} -e USER_ID={userid} -d {containername}:latest --p {project} --tp {topic}"
     #para ejecutar el comando en el sistema operativo y leer su salida. Convierte la salida en un entero.
     stream = os.popen(cmd)
     output = stream.read().replace("\n","")
@@ -67,7 +67,7 @@ def main(argv):
       opts, args = getopt.getopt(argv,"t:e:i:",["topcontainers=","elapsedtime=","imagename=", "project=", "topic="])
 #Si no contempla la opción anterior, sale del contenedor con el status "2"
    except getopt.GetoptError:
-      print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> --project=ID_DEL_PROYECTO --topic=NOMBRE_DEL_TOPIC')
+      print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> --p=ID_DEL_PROYECTO --tp=NOMBRE_DEL_TOPIC')
       sys.exit(2)
 #Itera en el bulce dentro de la tupla "opts" y comprueba si conincde con alguna de las opciones esperadas:
    for opt, arg in opts:
