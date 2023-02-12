@@ -67,12 +67,12 @@ def main(argv):
       opts, args = getopt.getopt(argv,"t:e:i:",["topcontainers=","elapsedtime=","imagename=", "project=", "topic="])
 #Si no contempla la opción anterior, sale del contenedor con el status "2"
    except getopt.GetoptError:
-      print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> --p=ID_DEL_PROYECTO --tp=NOMBRE_DEL_TOPIC')
+      print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> --p <projectID> --tp <topicID>')
       sys.exit(2)
 #Itera en el bulce dentro de la tupla "opts" y comprueba si conincde con alguna de las opciones esperadas:
    for opt, arg in opts:
       if opt in ("-h", "--help"):
-         print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> --p=ID_DEL_PROYECTO --tp=NOMBRE_DEL_TOPIC')
+         print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> --p <projectID> --tp <topicID>')
          print(" elapsedtime: int (seconds)")
          print(" topcotainers: int (top number of concurrent clients)")
          print(" image: string (image name)")
@@ -92,8 +92,8 @@ def main(argv):
    print(f"Top Containers: {topcontainers}")
    print(f"Elapsed Time: {elapsedtime}")
    print(f"Container name: {containername}")
-   print(f"Container name: {project}")
-   print(f"Container name: {topic}")
+   print(f"Project name: {project}")
+   print(f"Topic name: {topic}")
 #Llama al main:
 if __name__ == "__main__":
    main(sys.argv[1:])
