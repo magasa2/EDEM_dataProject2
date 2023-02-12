@@ -42,11 +42,12 @@ def createcontainer():
     global elapsedtime
     global topcontainers
     global containers
-
+    global project
+    global topic
     #Llama a la función anterior que crea el ID unico.
     userid=genuserid()
     #Comando para levantar el docker:
-    cmd=f"docker run -e TIME_ID={elapsedtime} -e USER_ID={userid} -d {containername}:latest --p {project} --tp {topic}"
+    cmd=f"docker run -e TIME_ID={elapsedtime} -e USER_ID={userid} -d {containername}:latest -p {project} -tp {topic}"
     #para ejecutar el comando en el sistema operativo y leer su salida. Convierte la salida en un entero.
     stream = os.popen(cmd)
     output = stream.read().replace("\n","")
@@ -122,4 +123,5 @@ while True:
     if prob == 0:
         deletecontainer(item)
    time.sleep(1)
+
 
