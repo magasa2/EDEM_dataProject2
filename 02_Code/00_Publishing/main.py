@@ -8,8 +8,8 @@ import random
 topcontainers = 0
 elapsedtime = 0
 containername=""
-project_id =""
-topic_name=""
+project=""
+topic=""
 
 #Lista de contenedores que se van a levantar.
 containers=[]
@@ -58,20 +58,24 @@ def main(argv):
    global containername
    global elapsedtime
    global topcontainers
+   global project
+   global topic
 #Procesa la lista mediante "getop.getop"
    try:
-      opts, args = getopt.getopt(argv,"t:e:i:",["topcontainers=","elapsedtime=","imagename="])
+      opts, args = getopt.getopt(argv,"t:e:i:",["topcontainers=","elapsedtime=","imagename=", "project=", "topic="])
 #Si no contempla la opción anterior, sale del contenedor con el status "2"
    except getopt.GetoptError:
-      print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename>')
+      print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> --project=ID_DEL_PROYECTO --topic=NOMBRE_DEL_TOPIC')
       sys.exit(2)
 #Itera en el bulce dentro de la tupla "opts" y comprueba si conincde con alguna de las opciones esperadas:
    for opt, arg in opts:
       if opt in ("-h", "--help"):
-         print('main.py -t <topcontainers> -e <elapsedtime> -n <imagename>')
+         print('main.py -t <topcontainers> -e <elapsedtime> -n <imagename> --project=ID_DEL_PROYECTO --topic=NOMBRE_DEL_TOPIC')
          print(" elapsedtime: int (seconds)")
          print(" topcotainers: int (top number of concurrent clients)")
          print(" image: string (image name)")
+         print(" project: string (project_id)")
+         print(" topic: string (topic_name)")
          sys.exit()
       elif opt in ("-t", "--topcontainers"):
          topcontainers = int(arg)
@@ -79,10 +83,15 @@ def main(argv):
          elapsedtime = int(arg)
       elif opt in ("-i", "--image"):
          containername = arg
+      elif opt in ("-p", "--projec"):
+         project = arg
+      elif opt in ("-tp", "--topic"):
+         topic = arg
    print(f"Top Containers: {topcontainers}")
    print(f"Elapsed Time: {elapsedtime}")
    print(f"Container name: {containername}")
-
+   print(f"Container name: {project}")
+   print(f"Container name: {topic}")
 #Llama al main:
 if __name__ == "__main__":
    main(sys.argv[1:])
