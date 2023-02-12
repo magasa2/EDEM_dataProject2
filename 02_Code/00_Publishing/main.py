@@ -42,6 +42,8 @@ def createcontainer():
     global elapsedtime
     global topcontainers
     global containers
+    global project
+    global topic
     #Llama a la función anterior que crea el ID unico.
     userid=genuserid()
     #Comando para levantar el docker:
