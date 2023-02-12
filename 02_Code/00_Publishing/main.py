@@ -70,7 +70,7 @@ def main(argv):
 #Itera en el bulce dentro de la tupla "opts" y comprueba si conincde con alguna de las opciones esperadas:
    for opt, arg in opts:
       if opt in ("-h", "--help"):
-         print('main.py -t <topcontainers> -e <elapsedtime> -n <imagename> --project=ID_DEL_PROYECTO --topic=NOMBRE_DEL_TOPIC')
+         print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> --project=ID_DEL_PROYECTO --topic=NOMBRE_DEL_TOPIC')
          print(" elapsedtime: int (seconds)")
          print(" topcotainers: int (top number of concurrent clients)")
          print(" image: string (image name)")
@@ -83,7 +83,7 @@ def main(argv):
          elapsedtime = int(arg)
       elif opt in ("-i", "--image"):
          containername = arg
-      elif opt in ("-p", "--projec"):
+      elif opt in ("-p", "--project"):
          project = arg
       elif opt in ("-tp", "--topic"):
          topic = arg
@@ -107,7 +107,7 @@ while True:
     print(f"Containers to be created: {create}")
     #Llamamos a la función "containers" tantas veces como conetenedoress se va a crear (definido en la parte superior)
     for i in range(0,create):
-        createcontainer()
+      createcontainer()
     #Si "numcon>=topcontainers" no se crearan más contenedores. 
    else:
     print("No more containers can be created")
