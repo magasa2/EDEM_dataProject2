@@ -42,10 +42,11 @@ def createcontainer():
     global elapsedtime
     global topcontainers
     global containers
+
     #Llama a la función anterior que crea el ID unico.
     userid=genuserid()
     #Comando para levantar el docker:
-    cmd=f"docker run -e TIME_ID={elapsedtime} -e USER_ID={userid} -d {containername}:latest"
+    cmd=f"docker run -e TIME_ID={elapsedtime} -e USER_ID={userid} -d {containername}:latest --p {project} --tp {topic}"
     #para ejecutar el comando en el sistema operativo y leer su salida. Convierte la salida en un entero.
     stream = os.popen(cmd)
     output = stream.read().replace("\n","")
@@ -62,7 +63,7 @@ def main(argv):
    global topic
 #Procesa la lista mediante "getop.getop"
    try:
-      opts, args = getopt.getopt(argv,"t:e:i:",["topcontainers=","elapsedtime=","imagename=", "project=", "topic="])
+      opts, args = getopt.getopt(argv,"t:e:i:p:tp=",["topcontainers=","elapsedtime=","imagename=", "project=", "topic="])
 #Si no contempla la opción anterior, sale del contenedor con el status "2"
    except getopt.GetoptError:
       print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> --p <projectID> --tp <topicID>')
