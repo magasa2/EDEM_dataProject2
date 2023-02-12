@@ -8,8 +8,7 @@ import random
 topcontainers = 0
 elapsedtime = 0
 containername=""
-project=""
-topic=""
+
 
 #Lista de contenedores que se van a levantar.
 containers=[]
