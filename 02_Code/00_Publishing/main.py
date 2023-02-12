@@ -98,7 +98,7 @@ def main(argv):
    print(f"Topic name: {topic}")
 #Llama al main:
 if __name__ == "__main__":
-   main(sys.argv[0:])
+   main(sys.argv[1:])
 
 
 while True:
