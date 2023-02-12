@@ -20,7 +20,7 @@ gcloud dataflow flex-template run edem-dataflow-job-docker \
     --region "europe-west1"
 
  #Para iniciar DataFlow
-python dataflow.py \
+python dataflow_franzi.py \
     --project_id edemproject2 \
     --input_subscription iotToBigQuery-sub \
     --output_topic iotToCloudFunctions \
@@ -33,7 +33,7 @@ python dataflow.py \
 
 #Para inciciar generador de datos
 
-python generator.py \
+python generator_publisher.py \
     --project_id edemproject2 \
     --topic_name iotToBigQuery
 
