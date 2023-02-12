@@ -8,6 +8,9 @@ import random
 topcontainers = 0
 elapsedtime = 0
 containername=""
+project=""
+topic=""
+
 
 
 #Lista de contenedores que se van a levantar.
@@ -95,7 +98,7 @@ def main(argv):
    print(f"Topic name: {topic}")
 #Llama al main:
 if __name__ == "__main__":
-   main(sys.argv[1:])
+   main(sys.argv[0:])
 
 
 while True:
