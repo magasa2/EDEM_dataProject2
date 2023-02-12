@@ -8,10 +8,6 @@ import random
 topcontainers = 0
 elapsedtime = 0
 containername=""
-project=""
-topic=""
-
-
 
 #Lista de contenedores que se van a levantar.
 containers=[]
@@ -44,12 +40,11 @@ def createcontainer():
     global elapsedtime
     global topcontainers
     global containers
-    global project
-    global topic
+
     #Llama a la función anterior que crea el ID unico.
     userid=genuserid()
     #Comando para levantar el docker:
-    cmd=f"docker run -e TIME_ID={elapsedtime} -e USER_ID={userid} -d {containername}:latest -p {project} -tp {topic}"
+    cmd=f"docker run -e TIME_ID={elapsedtime} -e USER_ID={userid} -d {containername}:latest"
     #para ejecutar el comando en el sistema operativo y leer su salida. Convierte la salida en un entero.
     stream = os.popen(cmd)
     output = stream.read().replace("\n","")
@@ -62,14 +57,13 @@ def main(argv):
    global containername
    global elapsedtime
    global topcontainers
-   global project
-   global topic
+
 #Procesa la lista mediante "getop.getop"
    try:
-      opts, args = getopt.getopt(argv,"t:e:i:p:tp=",["topcontainers=","elapsedtime=","imagename=", "project=", "topic="])
+      opts, args = getopt.getopt(argv,"t:e:i=",["topcontainers=","elapsedtime=","imagename="])
 #Si no contempla la opción anterior, sale del contenedor con el status "2"
    except getopt.GetoptError:
-      print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> -p <projectID> -tp <topicID>')
+      print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename>')
       sys.exit(2)
 #Itera en el bulce dentro de la tupla "opts" y comprueba si conincde con alguna de las opciones esperadas:
    for opt, arg in opts:
@@ -78,8 +72,6 @@ def main(argv):
          print(" elapsedtime: int (seconds)")
          print(" topcotainers: int (top number of concurrent clients)")
          print(" image: string (image name)")
-         print(" project: string (project_id)")
-         print(" topic: string (topic_name)")
          sys.exit()
       elif opt in ("-t", "--topcontainers"):
          topcontainers = arg
@@ -87,15 +79,9 @@ def main(argv):
          elapsedtime = arg
       elif opt in ("-i", "--image"):
          containername = arg
-      elif opt in ("-p", "--project"):
-         project = arg
-      elif opt in ("-tp", "--topic"):
-         topic = arg
    print(f"Top Containers: {topcontainers}")
    print(f"Elapsed Time: {elapsedtime}")
    print(f"Container name: {containername}")
-   print(f"Project name: {project}")
-   print(f"Topic name: {topic}")
 #Llama al main:
 if __name__ == "__main__":
    main(sys.argv[1:])

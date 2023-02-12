@@ -16,4 +16,5 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 
 # Run the command to execute the Python script
-CMD ["python", "generator_publisher.py"]
+CMD ["python", "generator_publisher.py", "--project_id", "--topic_id"]
+
