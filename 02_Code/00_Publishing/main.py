@@ -83,11 +83,11 @@ def main(argv):
       elif opt in ("-e", "--elapsedtime"):
          elapsedtime = int(arg)
       elif opt in ("-i", "--image"):
-         containername = arg
+         containername = str(arg)
       elif opt in ("-p", "--project"):
-         project = arg
+         project = str(arg)
       elif opt in ("-tp", "--topic"):
-         topic = arg
+         topic = str(arg)
    print(f"Top Containers: {topcontainers}")
    print(f"Elapsed Time: {elapsedtime}")
    print(f"Container name: {containername}")
