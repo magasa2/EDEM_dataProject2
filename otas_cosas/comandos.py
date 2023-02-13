@@ -3,7 +3,7 @@ Bucket_name = edemproject2
 
 #Generar la imagen de docker
 gcloud builds submit --tag 'gcr.io/edemproject2/dataflow/edem:latest' .
-
+gcloud builds submit --tag 'gcr.io/edemproject2/generador/edem:latest' .
 #Create Dataflow Flex Template from Image(si lo haces con la imagen de docker) :
 gcloud dataflow flex-template build "gs://edemproject2/dataflowtemplate.json" \
     --image 'gcr.io/edemproject2/dataflow/edem:latest' \
@@ -20,7 +20,7 @@ gcloud dataflow flex-template run edem-dataflow-job-docker \
     --region "europe-west1"
 
  #Para iniciar DataFlow
-python dataflow_franzi.py \
+python dataflow.py \
     --project_id edemproject2 \
     --input_subscription iotToBigQuery-sub \
     --output_topic iotToCloudFunctions \
@@ -37,5 +37,31 @@ python generator_publisher.py \
     --project_id edemproject2 \
     --topic_name iotToBigQuery
 
+gcloud builds submit --tag gcr.io/edemproject2/generador
+
+gcloud builds submit --tag gcr.io/edemproject2/generador
 
 
+gcloud builds submit --tag gcr.io/edemproject2/generador --file Dockerfile .
+
+
+docker push gcr.io/edemproject2/my-image
+
+
+python main.py -t 10 -e 2 -i my-image \
+    --project_id edemproject2 \
+    --topic_name iotToBigQuery
+
+python main.py -t 10 -e 2 -i my-image --project=edemproject2 --topic=iotToBigQuery
+
+python main.py -t 10 -e 2 -i my-image \
+    -p edemproject2 \
+    -tp iotToBigQuery
+
+python main.py -t 10 -e 2 -i my-image -p edemproject2 -tp iotToBigQuery
+
+
+levantar imagen y arrancar el docker
+docker buil -t myimage .
+
+docker run myimage --edemproject2 --iotToBigQuery
