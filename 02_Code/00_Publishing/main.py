@@ -19,7 +19,7 @@ def getcontainers():
     #para ejecutar el comando en el sistema operativo y leer su salida. Convierte la salida en un entero.
     stream = os.popen(cmd)
     output = stream.read()
-    return output
+    return int(output)
 
 #Función para generar un ID de cada contenedor que simula un sensor diferente.
 def genuserid():
@@ -76,9 +76,9 @@ def main(argv):
       elif opt in ("-t", "--topcontainers"):
          topcontainers = int(arg)
       elif opt in ("-e", "--elapsedtime"):
-         elapsedtime = str(arg)
+         elapsedtime = int(arg)
       elif opt in ("-i", "--image"):
-         containername = str(arg)
+         containername = arg
    print(f"Top Containers: {topcontainers}")
    print(f"Elapsed Time: {elapsedtime}")
    print(f"Container name: {containername}")
@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
 while True:
 #Guarda el resultado de la funcion "getcontainers" en la variale "numcon". Saca por consola el número de contenedores
-   numcon:int=getcontainers()
+   numcon=getcontainers()
    print(f"Currently running containers: {len(containers)}")
    #Si se cumple la siguiente condicion, se genera un número aleatorio entre 0 y "topcontainers" para determinar el número de contenedores a crear
    if numcon<topcontainers:
