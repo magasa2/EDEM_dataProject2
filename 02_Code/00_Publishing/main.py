@@ -74,7 +74,7 @@ def main(argv):
          print(" image: string (image name)")
          sys.exit()
       elif opt in ("-t", "--topcontainers"):
-         topcontainers = int(arg)
+         topcontainers:int = int(arg)
       elif opt in ("-e", "--elapsedtime"):
          elapsedtime = arg
       elif opt in ("-i", "--image"):
