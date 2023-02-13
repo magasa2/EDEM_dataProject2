@@ -2,8 +2,8 @@
 FROM python:3.9-slim
 
 # Set environment variables
-ENV my-project="edemproject2"
-ENV my-topic="iotToBigQuery"
+ENV project_id=edemproject2
+ENV topic_name=iotToBigQuery
 
 # Create folder /app
 RUN mkdir app
@@ -20,5 +20,5 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 
 # Run the command to execute the Python script
-CMD ["python", "generator_publisher.py", "--project_id", "${PROJECT_ID}", "--topic_id", "${TOPIC_ID}"]
+CMD ["python", "generator_publisher.py", "--project_id", "${project_id}", "--topic_id", "${topic_name}"]
 
