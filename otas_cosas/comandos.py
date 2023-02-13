@@ -65,3 +65,10 @@ levantar imagen y arrancar el docker
 docker buil -t myimage .
 
 docker run myimage --edemproject2 --iotToBigQuery
+
+docker run -e myimage --project_id edemproject2 --topic_name iotToBigQuery
+
+docker run -i myimage -e project_id=edemproject2 -e topic_name=iotToBigQuery 
+
+
+docker run -e myimage -e --project_id=edemproject2 -e --topic_id=iotToBigQuery
