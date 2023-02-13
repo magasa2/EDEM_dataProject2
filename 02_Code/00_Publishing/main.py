@@ -19,7 +19,7 @@ def getcontainers():
     #para ejecutar el comando en el sistema operativo y leer su salida. Convierte la salida en un entero.
     stream = os.popen(cmd)
     output = stream.read()
-    return int(output)
+    return output
 
 #Función para generar un ID de cada contenedor que simula un sensor diferente.
 def genuserid():
