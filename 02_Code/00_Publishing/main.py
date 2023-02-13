@@ -68,7 +68,7 @@ def main(argv):
 #Itera en el bulce dentro de la tupla "opts" y comprueba si conincde con alguna de las opciones esperadas:
    for opt, arg in opts:
       if opt in ("-h", "--help"):
-         print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename> -p <projectID> -tp <topicID>')
+         print('main.py -t <topcontainers> -e <elapsedtime> -i <imagename>')
          print(" elapsedtime: int (seconds)")
          print(" topcotainers: int (top number of concurrent clients)")
          print(" image: string (image name)")
