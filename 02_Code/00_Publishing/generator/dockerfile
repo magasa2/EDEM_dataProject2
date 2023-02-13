@@ -2,8 +2,8 @@
 FROM python:3.9-slim
 
 # Set environment variables
-ENV PROJECT_ID=edemproject2
-ENV TOPIC_ID=iotToBigQuery
+ENV my-project="edemproject2"
+ENV my-topic="iotToBigQuery"
 
 # Create folder /app
 RUN mkdir app
