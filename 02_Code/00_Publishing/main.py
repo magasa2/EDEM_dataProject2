@@ -5,8 +5,8 @@ import uuid
 import random
 
 #Predeterminar las variables a utilizar.
-topcontainers = 0
-elapsedtime = 0
+topcontainers:int = 0
+elapsedtime:int = 0
 containername=""
 
 #Lista de contenedores que se van a levantar.
